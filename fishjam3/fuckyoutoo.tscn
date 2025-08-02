@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dmtreyt157i43"]
+
+[node name="fuckyoutoo" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Node2" type="Node" parent="."]
