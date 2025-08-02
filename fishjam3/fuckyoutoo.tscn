@@ -3,3 +3,5 @@
 [node name="fuckyoutoo" type="Node2D"]
 
 [node name="Node" type="Node" parent="."]
+
+[node name="Node2" type="Node" parent="."]
