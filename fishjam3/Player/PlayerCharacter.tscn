@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bobjqen2l8ppo"]
+
+[ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player_character.gd" id="1_k87gr"]
+[ext_resource type="Texture2D" uid="uid://dpkqiyldt65vi" path="res://Sprites/Alexander.png" id="2_1gtpu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdwmw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1gtpu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05ndu"]
+size = Vector2(40, 79)
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+script = ExtResource("1_k87gr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jdwmw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5.5)
+shape = SubResource("RectangleShape2D_05ndu")
