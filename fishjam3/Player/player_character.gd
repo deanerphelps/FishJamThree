@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.play("Running_Right")
 		elif direction < 0:
 			if is_on_floor():
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(1*delta).timeout
 				animated_sprite_2d.set_flip_h(true)
 			animated_sprite_2d.play("Running_Right")
 
