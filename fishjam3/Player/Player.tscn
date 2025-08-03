@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bobjqen2l8ppo"]
 
-[ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player_character.gd" id="1_k87gr"]
+[ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player.gd" id="1_k87gr"]
 [ext_resource type="Texture2D" uid="uid://dpkqiyldt65vi" path="res://Sprites/Alexander.png" id="2_1gtpu"]
 [ext_resource type="Texture2D" uid="uid://s03f4ec3t4mw" path="res://Sprites/Running,png.png" id="2_jdwmw"]
 
@@ -78,10 +78,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05ndu"]
 size = Vector2(40, 79)
 
-[node name="PlayerCharacter" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_k87gr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1gtpu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_jdwmw")
 animation = &"Running_Left"
 frame_progress = 0.606275

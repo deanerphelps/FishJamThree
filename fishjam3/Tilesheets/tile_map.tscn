@@ -375,11 +375,12 @@ texture = ExtResource("1_jhrrp")
 
 [sub_resource type="TileSet" id="TileSet_nix3c"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 12
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_eqv15")
 
-[node name="TileMap" type="TileMap"]
+[node name="TileMap" type="TileMap" groups=["TileMap"]]
 tile_set = SubResource("TileSet_nix3c")
 format = 2
