@@ -9,10 +9,12 @@ var health = Globals.player_health
 var enemy_collision_check := false
 
 func _physics_process(delta: float) -> void:
-	var x_input = Input.get_axis("ui_left", "ui_right")
-	velocity.x = x_input * 50
 	
-	move_and_slide()
+	 #Commented Duplicate Movement, sorry Paisley :(
+	#var x_input = Input.get_axis("ui_left", "ui_right")
+	#velocity.x = x_input * SPEED
+	#
+	#move_and_slide()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -25,11 +27,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("ui_left", "ui_right")
-	print(direction)
-	if direction:
+	if direction && not enemy_collision_check:
 		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED/2)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	if is_on_floor():	
 		if direction == 0:
@@ -45,15 +46,18 @@ func _physics_process(delta: float) -> void:
 	
 		
 	move_and_slide()
-	
+	# Doesn't work, crashes when colliding when jumping or colliding quickly in succession
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i) 
-		if collision.get_collider().is_in_group("Enemy"):
-			if direction == 1:
-				velocity.x = -2000
-			elif direction == -1:
-				velocity.x = 2000
-			velocity.y = -200
-			#await get_tree().create_timer(0.1).timeout
+			var collision = get_slide_collision(i) 
+			if collision.get_collider().is_in_group("Enemy"):
+				enemy_collision_check = true
+				if direction == 1:
+					velocity.x = -2000
+				elif direction == -1:
+					velocity.x = 2000
+				velocity.y = -200
+				await get_tree().create_timer(0.1).timeout
+				enemy_collision_check = false
+				#await get_tree().create_timer(0.1).timeout
 
-		#	print("I collided with ", collision.get_collider().name)
+			#	print("I collided with ", collision.get_collider().name)

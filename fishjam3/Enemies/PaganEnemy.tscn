@@ -14,9 +14,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6pe4t"]
-radius = 19.0
-height = 82.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gg5xg"]
+radius = 20.5
+height = 81.0
 
 [node name="PaganEnemy" type="RigidBody2D" groups=["Enemy"]]
 collision_layer = 8
@@ -28,5 +28,5 @@ script = ExtResource("1_hxhsd")
 sprite_frames = SubResource("SpriteFrames_hxhsd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_6pe4t")
+position = Vector2(-0.5, -4.5)
+shape = SubResource("CapsuleShape2D_gg5xg")
