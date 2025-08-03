@@ -1,9 +1,9 @@
 extends CharacterBody2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -21,5 +21,19 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if is_on_floor():	
+		if direction == 0:
+			animated_sprite_2d.play("default")
+		elif direction > 0:
+			if is_on_floor():
+				await get_tree().create_timer(0.1).timeout
+				animated_sprite_2d.set_flip_h(false)
+			animated_sprite_2d.play("Running_Right")
+		elif direction < 0:
+			if is_on_floor():
+				await get_tree().create_timer(0.1).timeout
+				animated_sprite_2d.set_flip_h(true)
+			animated_sprite_2d.play("Running_Right")
 
 	move_and_slide()

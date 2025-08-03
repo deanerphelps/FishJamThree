@@ -1,10 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://bobjqen2l8ppo"]
+[gd_scene load_steps=11 format=3 uid="uid://bobjqen2l8ppo"]
 
 [ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player_character.gd" id="1_k87gr"]
 [ext_resource type="Texture2D" uid="uid://dpkqiyldt65vi" path="res://Sprites/Alexander.png" id="2_1gtpu"]
+[ext_resource type="Texture2D" uid="uid://s03f4ec3t4mw" path="res://Sprites/Running,png.png" id="2_jdwmw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05ndu"]
+atlas = ExtResource("2_jdwmw")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxyys"]
+atlas = ExtResource("2_jdwmw")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnsy3"]
+atlas = ExtResource("2_jdwmw")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn7gb"]
+atlas = ExtResource("2_jdwmw")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f781"]
+atlas = ExtResource("2_jdwmw")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jdwmw"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05ndu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxyys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnsy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn7gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f781")
+}],
+"loop": true,
+"name": &"Running_Left",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05ndu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxyys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnsy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn7gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f781")
+}],
+"loop": true,
+"name": &"Running_Right",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_1gtpu")
@@ -22,6 +83,8 @@ script = ExtResource("1_k87gr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jdwmw")
+animation = &"Running_Left"
+frame_progress = 0.678631
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5.5)
