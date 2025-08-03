@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -400.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
+	print(get_gravity())
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -27,13 +28,11 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.play("default")
 		elif direction > 0:
 			if is_on_floor():
-				await get_tree().create_timer(0.1).timeout
-				animated_sprite_2d.set_flip_h(false)
+				animated_sprite_2d.scale = Vector2(1,1)
 			animated_sprite_2d.play("Running_Right")
 		elif direction < 0:
 			if is_on_floor():
-				await get_tree().create_timer(1*delta).timeout
-				animated_sprite_2d.set_flip_h(true)
+				animated_sprite_2d.scale = Vector2(-1,1)
 			animated_sprite_2d.play("Running_Right")
 
 	move_and_slide()
