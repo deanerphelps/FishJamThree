@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=3 uid="uid://nourvdrfqdkn"]
+
+[ext_resource type="Script" uid="uid://dyh857hlosfh1" path="res://Player/swipe_attack.gd" id="1_okb6y"]
+[ext_resource type="Texture2D" uid="uid://dhenb78gnvsj7" path="res://Sprites/attacks/swing01.png" id="2_svmu0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b5us"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qntiv"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj0pm"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0crw"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjuuc"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njnah"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bjbp"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjjy2"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq8dq"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgbm3"]
+atlas = ExtResource("2_svmu0")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqolq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b5us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qntiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj0pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0crw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjuuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njnah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bjbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjjy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq8dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgbm3")
+}],
+"loop": false,
+"name": &"Swipe_Attack",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j0ne7"]
+radius = 24.3516
+
+[node name="SwipeAttack" type="Area2D"]
+script = ExtResource("1_okb6y")
+
+[node name="AnimatedSwipe" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bqolq")
+animation = &"Swipe_Attack"
+frame = 9
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j0ne7")
+
+[connection signal="animation_finished" from="AnimatedSwipe" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,7 +1,10 @@
 extends CharacterBody2D
 signal hit
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_swipe: AnimatedSprite2D = $AnimatedSwipe
 @onready var health_label: Label = $HealthLabel
+@onready var swipe_attack: Area2D = $SwipeAttack
+
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -65,6 +68,14 @@ func _physics_process(delta: float) -> void:
 			if health > 0:
 				await get_tree().create_timer(0.4).timeout
 				enemy_collision_check = false
+
+	if direction == -1: #&& animated_swipe.is_playing() == false:
+		swipe_attack.scale = Vector2(-1, 1)
+		swipe_attack.position = Vector2(-32, 0)
+	elif direction == 1: #&& animated_swipe.is_playing() == false:
+		swipe_attack.scale = Vector2(1, 1)
+		swipe_attack.position = Vector2(32, 0)
+
 
 func _on_hit() -> void:
 	health = health-1
