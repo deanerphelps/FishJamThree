@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bobjqen2l8ppo"]
+[gd_scene load_steps=12 format=3 uid="uid://bobjqen2l8ppo"]
 
 [ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player.gd" id="1_k87gr"]
 [ext_resource type="Texture2D" uid="uid://dpkqiyldt65vi" path="res://Sprites/Alexander.png" id="2_1gtpu"]
@@ -79,6 +79,11 @@ animations = [{
 radius = 18.0
 height = 73.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_tok1r"]
+font_size = 11
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 11
@@ -99,3 +104,20 @@ position = Vector2(-1, -2.5)
 shape = SubResource("CapsuleShape2D_tok1r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HealthLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5
+offset_top = -59.0
+offset_right = 33.5
+offset_bottom = -36.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "health: 999"
+label_settings = SubResource("LabelSettings_tok1r")
+horizontal_alignment = 1
+uppercase = true
+
+[connection signal="hit" from="." to="." method="_on_hit"]
