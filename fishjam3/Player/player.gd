@@ -46,18 +46,15 @@ func _physics_process(delta: float) -> void:
 	
 		
 	move_and_slide()
-	# Doesn't work, crashes when colliding when jumping or colliding quickly in succession
-	for i in get_slide_collision_count():
-			var collision = get_slide_collision(i) 
-			if collision.get_collider().is_in_group("Enemy"):
-				enemy_collision_check = true
-				if direction == 1:
-					velocity.x = -2000
-				elif direction == -1:
-					velocity.x = 2000
-				velocity.y = -200
-				await get_tree().create_timer(0.1).timeout
-				enemy_collision_check = false
-				#await get_tree().create_timer(0.1).timeout
 
-			#	print("I collided with ", collision.get_collider().name)
+#Assuming the number of collisions is > 0, check if the last collision happened (this part would break if there was no last collision), then do the knockback
+	if get_slide_collision_count()>0:
+		if(get_last_slide_collision().get_collider().is_in_group("Enemy")):
+			enemy_collision_check = true
+			if direction == 1:
+				velocity.x = -2000
+			elif direction == -1:
+				velocity.x = 2000
+			velocity.y = -200
+			await get_tree().create_timer(0.4).timeout
+			enemy_collision_check = false
