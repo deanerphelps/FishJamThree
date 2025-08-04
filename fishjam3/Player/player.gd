@@ -1,7 +1,6 @@
 extends CharacterBody2D
 signal hit
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var animated_swipe: AnimatedSprite2D = $AnimatedSwipe
 @onready var health_label: Label = $HealthLabel
 @onready var swipe_attack: Area2D = $SwipeAttack
 

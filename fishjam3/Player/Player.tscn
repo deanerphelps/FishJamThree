@@ -123,5 +123,3 @@ uppercase = true
 position = Vector2(32, 0)
 
 [connection signal="hit" from="." to="." method="_on_hit"]
-
-[editable path="SwipeAttack"]
