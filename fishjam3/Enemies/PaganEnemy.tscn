@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp3eiq4hy28ty"]
+
+[ext_resource type="Texture2D" uid="uid://bxv13ocdldct6" path="res://Sprites/Pagan.png" id="1_5kk61"]
+[ext_resource type="Script" uid="uid://7xp25ai0y7ff" path="res://Enemies/enemy.gd" id="1_hxhsd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxhsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5kk61")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gg5xg"]
+radius = 20.5
+height = 81.0
+
+[node name="PaganEnemy" type="RigidBody2D" groups=["Enemy"]]
+collision_layer = 8
+collision_mask = 7
+lock_rotation = true
+script = ExtResource("1_hxhsd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hxhsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -4.5)
+shape = SubResource("CapsuleShape2D_gg5xg")
