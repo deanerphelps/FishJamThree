@@ -56,12 +56,13 @@ func _physics_process(delta: float) -> void:
 #Assuming the number of collisions is > 0, check if the last collision happened (this part would break if there was no last collision), then do the knockback
 	if get_slide_collision_count()>0:
 		if(get_last_slide_collision().get_collider().is_in_group("Enemy")):
-						
+			var enemy = get_last_slide_collision().get_collider()
 			enemy_collision_check = true
 			emit_signal("hit")
-			if direction == 1:
+			
+			if enemy.global_position.x > global_position.x:
 				velocity.x = -2000
-			elif direction == -1:
+			elif enemy.global_position.x < global_position.x:
 				velocity.x = 2000
 			velocity.y = -200
 			if health > 0:
