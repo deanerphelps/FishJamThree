@@ -28,7 +28,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print("Hit!")
-	if area.get_parent().is_in_group("Enemy"):
-		print("Hit two!")
+	if area.name == "EnemyHurtBox":
 		area.get_parent().queue_free()
