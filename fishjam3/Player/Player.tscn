@@ -163,7 +163,7 @@ texture = ExtResource("2_1gtpu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jdwmw")
-frame_progress = 0.404263
+frame_progress = 0.805037
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -2.5)
