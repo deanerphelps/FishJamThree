@@ -22,6 +22,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	health_label.text = str(health)+"/"+str(max_health)
 	
+	direction = 1
 	if direction != 0:
 		last_direction = direction
 	
@@ -85,7 +86,7 @@ func _on_hit() -> void:
 		get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 func dash():
-	if Input.is_action_just_pressed("Dash") && not is_dashing:
+	if Input.is_action_just_pressed("Dash") && not is_dashing && last_direction != null:
 		is_dashing = true
 		dash_timer.start()
 		animated_sprite_2d.material.blend_mode = 4
@@ -96,6 +97,7 @@ func dash():
 			velocity.x = -DASH_SPEED
 			animated_sprite_2d.scale = Vector2(-1,1)
 			animated_sprite_2d.play("Dash")
+		
 
 
 func _on_dash_timer_timeout() -> void:
