@@ -1,5 +1,5 @@
 extends Node
-var player_health: int = 5
+var player_health: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
