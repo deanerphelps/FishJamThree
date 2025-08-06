@@ -63,6 +63,14 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ddoul")
+}],
+"loop": true,
+"name": &"Dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddoul")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8g4oa")
@@ -163,7 +171,7 @@ texture = ExtResource("2_1gtpu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jdwmw")
-frame_progress = 0.805037
+animation = &"Dash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -2.5)
@@ -189,4 +197,8 @@ uppercase = true
 [node name="SwipeAttack" parent="." instance=ExtResource("4_ddoul")]
 position = Vector2(32, 0)
 
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
