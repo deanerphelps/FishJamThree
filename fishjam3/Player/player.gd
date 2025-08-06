@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		last_direction = direction
 	
 	# Add the gravity.
-	if not is_on_floor() && not enemy_collision_check:
+	if not is_on_floor():
 		velocity += get_gravity() * delta
 		animated_sprite_2d.play("default")
 
@@ -67,9 +67,7 @@ func _physics_process(delta: float) -> void:
 			elif enemy.global_position.x < global_position.x:
 				velocity.x = 2000
 			velocity.y = -200
-			if health > 0:
 				#await get_tree().create_timer(0.4).timeout
-				enemy_collision_check = false
 
 	move_and_slide()
 
