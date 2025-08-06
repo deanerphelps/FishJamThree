@@ -4,6 +4,7 @@ signal hit
 @onready var health_label: Label = $HealthLabel
 @onready var swipe_attack: Area2D = $SwipeAttack
 @onready var dash_timer: Timer = $DashTimer
+@onready var knockback_lock_timer: Timer = $KnockbackLockTimer
 
 
 const SPEED = 300.0
@@ -25,12 +26,12 @@ func _physics_process(delta: float) -> void:
 		last_direction = direction
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() && not enemy_collision_check:
 		velocity += get_gravity() * delta
 		animated_sprite_2d.play("default")
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") && is_on_floor() && not enemy_collision_check:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -58,9 +59,9 @@ func _physics_process(delta: float) -> void:
 	if get_slide_collision_count()>0:
 		if(get_last_slide_collision().get_collider().is_in_group("Enemy")):
 			var enemy = get_last_slide_collision().get_collider()
-			enemy_collision_check = true
 			emit_signal("hit")
-			
+			knockback_lock_timer.start()
+			enemy_collision_check = true
 			if enemy.global_position.x > global_position.x:
 				velocity.x = -2000
 			elif enemy.global_position.x < global_position.x:
@@ -80,9 +81,10 @@ func _physics_process(delta: float) -> void:
 		swipe_attack.position = Vector2(32, 0)
 
 func _on_hit() -> void:
-	health = health-1
+	if enemy_collision_check == false:
+		health = health-1
 	if health <= 0:
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 func dash():
 	if Input.is_action_just_pressed("Dash") && not is_dashing:
@@ -101,3 +103,7 @@ func dash():
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
 	animated_sprite_2d.material.blend_mode = 0
+
+
+func _on_knockback_lock_timer_timeout() -> void:
+	enemy_collision_check = false
