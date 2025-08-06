@@ -49,10 +49,7 @@ func _physics_process(delta: float) -> void:
 			if is_on_floor():
 				animated_sprite_2d.scale = Vector2(-1,1)
 			animated_sprite_2d.play("Running_Right")
-	
-		
-	move_and_slide()
-
+			
 #Assuming the number of collisions is > 0, check if the last collision happened (this part would break if there was no last collision), then do the knockback
 	if get_slide_collision_count()>0:
 		if(get_last_slide_collision().get_collider().is_in_group("Enemy")):
@@ -64,10 +61,14 @@ func _physics_process(delta: float) -> void:
 				velocity.x = -2000
 			elif enemy.global_position.x < global_position.x:
 				velocity.x = 2000
+			if  is_on_wall():
+				(print("Wall!"))
 			velocity.y = -200
 			if health > 0:
-				await get_tree().create_timer(0.4).timeout
+				#await get_tree().create_timer(0.4).timeout
 				enemy_collision_check = false
+
+	move_and_slide()
 
 	if direction == -1: #&& animated_swipe.is_playing() == false:
 		swipe_attack.scale = Vector2(-1, 1)
@@ -75,7 +76,6 @@ func _physics_process(delta: float) -> void:
 	elif direction == 1: #&& animated_swipe.is_playing() == false:
 		swipe_attack.scale = Vector2(1, 1)
 		swipe_attack.position = Vector2(32, 0)
-
 
 func _on_hit() -> void:
 	health = health-1
