@@ -89,13 +89,17 @@ func dash():
 		is_dashing = true
 		dash_timer.start()
 		animated_sprite_2d.material.blend_mode = 4
-		if last_direction > 0 || direction > 0:
-			velocity.x = DASH_SPEED
-			animated_sprite_2d.play("Dash")
-		elif last_direction < 0 || direction < 0:
-			velocity.x = -DASH_SPEED
-			animated_sprite_2d.scale = Vector2(-1,1)
-			animated_sprite_2d.play("Dash")
+		if last_direction != null:
+			if last_direction > 0 || direction > 0:
+				velocity.x = DASH_SPEED
+				animated_sprite_2d.play("Dash")
+			elif last_direction < 0 || direction < 0:
+				velocity.x = -DASH_SPEED
+				animated_sprite_2d.scale = Vector2(-1,1)
+				animated_sprite_2d.play("Dash")
+		else:
+			is_dashing = false
+		
 
 
 func _on_dash_timer_timeout() -> void:

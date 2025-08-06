@@ -173,6 +173,7 @@ texture = ExtResource("2_1gtpu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_8g4oa")
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_jdwmw")
 animation = &"Dash"
 frame_progress = 0.8806
