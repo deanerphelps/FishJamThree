@@ -88,6 +88,7 @@ func dash():
 	if Input.is_action_just_pressed("Dash") && not is_dashing:
 		is_dashing = true
 		dash_timer.start()
+		animated_sprite_2d.material.blend_mode = 4
 		if last_direction > 0 || direction > 0:
 			velocity.x = DASH_SPEED
 			animated_sprite_2d.play("Dash")
@@ -99,3 +100,4 @@ func dash():
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
+	animated_sprite_2d.material.blend_mode = 0
