@@ -22,6 +22,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	health_label.text = str(health)+"/"+str(max_health)
 	
+	direction = 1
 	if direction != 0:
 		last_direction = direction
 	
