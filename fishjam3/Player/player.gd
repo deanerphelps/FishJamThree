@@ -131,7 +131,7 @@ func _on_hit() -> void:
 		update_health_label()
 
 	if health <= 0:
-		get_tree().change_scene_to_file("res://MainMenu.tscn")
+		get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false

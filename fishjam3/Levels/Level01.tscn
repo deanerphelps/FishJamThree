@@ -13,5 +13,9 @@ layer_0/tile_data = PackedInt32Array(1179684, 458752, 2, 1114148, 458752, 1, 104
 position = Vector2(288, 63)
 target_to_chase = NodePath("../Player")
 
+[node name="PaganEnemy2" parent="." node_paths=PackedStringArray("target_to_chase") instance=ExtResource("3_v0mw7")]
+position = Vector2(574, 55)
+target_to_chase = NodePath("../Player")
+
 [node name="Player" parent="." instance=ExtResource("3_mk8wa")]
 position = Vector2(-111, 8)
