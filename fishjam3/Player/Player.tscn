@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bobjqen2l8ppo"]
+[gd_scene load_steps=24 format=3 uid="uid://bobjqen2l8ppo"]
 
 [ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player.gd" id="1_k87gr"]
 [ext_resource type="Texture2D" uid="uid://dpkqiyldt65vi" path="res://Sprites/Alexander.png" id="2_1gtpu"]
 [ext_resource type="Texture2D" uid="uid://s03f4ec3t4mw" path="res://Sprites/Running,png.png" id="2_jdwmw"]
 [ext_resource type="Texture2D" uid="uid://2nxe2tpyg13h" path="res://Sprites/Alexander_Idle.png" id="4_8g4oa"]
 [ext_resource type="PackedScene" uid="uid://nourvdrfqdkn" path="res://Player/swipe_attack.tscn" id="4_ddoul"]
+[ext_resource type="PackedScene" uid="uid://dn1c3gfcl35si" path="res://UI/InputSettings/InputSettings.tscn" id="6_6ysni"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8g4oa"]
 
@@ -179,6 +180,11 @@ one_shot = true
 [node name="KnockbackLockTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="InputSettings" parent="GUI" instance=ExtResource("6_6ysni")]
+visible = false
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
