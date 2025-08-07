@@ -7,6 +7,7 @@ signal hit
 @onready var swipe_attack: Area2D = $SwipeAttack
 @onready var dash_timer: Timer = $DashTimer
 @onready var knockback_lock_timer: Timer = $KnockbackLockTimer
+@onready var blinking_timer: Timer = $BlinkingTimer
 
 const SPEED = 300.0
 const DASH_SPEED = 2500.0
@@ -18,6 +19,7 @@ var direction := 0
 var last_direction := 1
 var is_dashing := false
 var enemy_collision_check := false
+var is_invincible := false
 
 var max_health := Globals.player_health
 var health := max_health
@@ -105,7 +107,12 @@ func handle_collisions() -> void:
 				velocity.x = KNOCKBACK_FORCE_X
 
 			velocity.y = KNOCKBACK_FORCE_Y
-			break  # Handle only one enemy per frame
+			
+			# Invincibility blinking
+			is_invincible = true
+			blinking_timer.start()
+			
+			break
 
 func update_swipe_attack_position() -> void:
 	swipe_attack.scale.x = last_direction
@@ -130,3 +137,20 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_knockback_lock_timer_timeout() -> void:
 	enemy_collision_check = false
+	
+
+func _on_blinking_timer_timeout() -> void:
+	if not is_invincible:
+		return
+	
+	if animated_sprite_2d.modulate.a == 1.0:
+		animated_sprite_2d.modulate.a = 0.3
+	else:
+		animated_sprite_2d.modulate.a = 1.0
+	
+	# Repeat until duration ends
+	if enemy_collision_check:
+		blinking_timer.start()
+	else:
+		animated_sprite_2d.modulate.a = 1.0
+		is_invincible = false
