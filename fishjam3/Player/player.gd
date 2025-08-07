@@ -44,8 +44,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func handle_gravity(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	#disable this for some shenanigans
+	#if is_dashing == false:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not enemy_collision_check:
@@ -60,6 +62,8 @@ func handle_movement() -> void:
 func handle_dash() -> void:
 	if Input.is_action_just_pressed("Dash") and not is_dashing:
 		is_dashing = true
+		set_collision_mask_value(4, false)
+		
 		dash_timer.start()
 		animated_sprite_2d.material.blend_mode = 4
 
@@ -121,6 +125,7 @@ func _on_hit() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
+	set_collision_mask_value(4, true)
 	animated_sprite_2d.material.blend_mode = 0
 
 func _on_knockback_lock_timer_timeout() -> void:
