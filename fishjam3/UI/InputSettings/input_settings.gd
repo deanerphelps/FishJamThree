@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var input_button_scene = preload("res://UI/input_button.gd")
+@onready var input_button_scene = preload("res://UI/input_button.tscn")
 @onready var action_list: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList
 
 var is_remapping = false

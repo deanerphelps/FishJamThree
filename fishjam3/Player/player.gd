@@ -29,6 +29,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	update_health_label()
+	remap_menu()
 
 	direction = Input.get_axis("move_left", "move_right")
 
