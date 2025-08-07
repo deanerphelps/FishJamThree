@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://15o81aogvulg"]
+
+[ext_resource type="Texture2D" uid="uid://chdt1s82gwy1p" path="res://Sprites/Goliath_Boss/Spear_Arm.png" id="1_pob8t"]
+[ext_resource type="Texture2D" uid="uid://bvotf7mxfnn80" path="res://Sprites/Goliath_Boss/Sword_Arm.png" id="2_csr07"]
+[ext_resource type="Texture2D" uid="uid://crgix4edwn2dq" path="res://Sprites/Goliath_Boss/Torso.png" id="3_k0p4b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hty6c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k0p4b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pob8t"]
+height = 38.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_csr07"]
+radius = 16.2788
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0p4b"]
+radius = 5.0
+
+[node name="GoliathBoss" type="Area2D"]
+
+[node name="SwordArmSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_csr07")
+
+[node name="TorsoSpriteAnimated" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hty6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-126, 73)
+shape = SubResource("CapsuleShape2D_pob8t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_csr07")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionShape2D"]
+position = Vector2(0, 24)
+shape = SubResource("CircleShape2D_k0p4b")
+
+[node name="SpearArmSprite" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(126, -73)
+texture = ExtResource("1_pob8t")
