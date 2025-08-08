@@ -186,6 +186,10 @@ one_shot = true
 [node name="InputSettings" parent="GUI" instance=ExtResource("6_6ysni")]
 visible = false
 
+[node name="BlinkingTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="KnockbackLockTimer" to="." method="_on_knockback_lock_timer_timeout"]

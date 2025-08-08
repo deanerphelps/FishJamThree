@@ -5,6 +5,7 @@ signal hit
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_label: Label = $HealthLabel
 @onready var swipe_attack: Area2D = $SwipeAttack
+@onready var input_menu: Control = $GUI/InputSettings
 @onready var dash_timer: Timer = $DashTimer
 @onready var knockback_lock_timer: Timer = $KnockbackLockTimer
 @onready var blinking_timer: Timer = $BlinkingTimer
