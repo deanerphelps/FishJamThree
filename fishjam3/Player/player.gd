@@ -10,6 +10,8 @@ signal hit
 @onready var knockback_lock_timer: Timer = $KnockbackLockTimer
 @onready var blinking_timer: Timer = $BlinkingTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var wall_check_raycast: RayCast2D = $WallCheckRaycast
+
 
 const SPEED = 300.0
 const DASH_SPEED = 2500.0
@@ -75,7 +77,7 @@ func handle_movement() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_dash() -> void:
-	if Input.is_action_just_pressed("dash") and not is_dashing and can_dash:
+	if Input.is_action_just_pressed("dash"): #and not is_dashing and can_dash:
 		if not is_on_floor() and has_air_dashed:
 			return  # Prevent second air dash
 
@@ -88,7 +90,14 @@ func handle_dash() -> void:
 		animated_sprite_2d.material.blend_mode = 4
 
 		var dash_dir = last_direction
-		velocity.x = dash_dir * DASH_SPEED
+		# velocity.x = dash_dir * DASH_SPEED
+		for i in 300:
+			var group_check = wall_check_raycast.get_collider()
+			if group_check != null:
+				if  group_check.is_in_group("TileMap"):
+					break
+			global_position.x = move_toward(global_position.x,global_position.x+(3000*dash_dir), 1)
+		print(global_position.x)
 		animated_sprite_2d.scale.x = dash_dir
 		animated_sprite_2d.play("dash")
 
