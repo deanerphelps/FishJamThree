@@ -39,6 +39,8 @@ sprite_frames = SubResource("SpriteFrames_hty6c")
 
 [node name="SpearArea" type="Area2D" parent="."]
 position = Vector2(-126, 106)
+collision_layer = 0
+collision_mask = 4
 
 [node name="SpearArmSprite" type="Sprite2D" parent="SpearArea"]
 position = Vector2(126, -106)
