@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://15o81aogvulg"]
+[gd_scene load_steps=11 format=3 uid="uid://15o81aogvulg"]
 
+[ext_resource type="Script" uid="uid://ck6ed7c4tie15" path="res://Enemies/goliath_boss.gd" id="1_csr07"]
 [ext_resource type="Texture2D" uid="uid://chdt1s82gwy1p" path="res://Sprites/Goliath_Boss/Spear_Arm.png" id="1_pob8t"]
 [ext_resource type="Texture2D" uid="uid://bvotf7mxfnn80" path="res://Sprites/Goliath_Boss/Sword_Arm.png" id="2_csr07"]
 [ext_resource type="Texture2D" uid="uid://crgix4edwn2dq" path="res://Sprites/Goliath_Boss/Torso.png" id="3_k0p4b"]
@@ -31,15 +32,17 @@ radius = 8.0
 radius = 7.07107
 
 [node name="GoliathBoss" type="Area2D"]
-
-[node name="SwordArmSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_csr07")
+script = ExtResource("1_csr07")
 
 [node name="TorsoSpriteAnimated" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hty6c")
 
 [node name="SpearArea" type="Area2D" parent="."]
 position = Vector2(-126, 106)
+
+[node name="SpearArmSprite" type="Sprite2D" parent="SpearArea"]
+position = Vector2(126, -106)
+texture = ExtResource("1_pob8t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpearArea"]
 position = Vector2(0, -33)
@@ -53,12 +56,12 @@ shape = SubResource("CircleShape2D_csr07")
 position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_k0p4b")
 
-[node name="SpearArmSprite" type="Sprite2D" parent="SpearArea"]
-position = Vector2(126, -106)
-texture = ExtResource("1_pob8t")
-
 [node name="SwordArea" type="Area2D" parent="."]
 position = Vector2(125, 45)
+
+[node name="SwordArmSprite" type="Sprite2D" parent="SwordArea"]
+position = Vector2(-125, -45)
+texture = ExtResource("2_csr07")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
 position = Vector2(3, -24)
