@@ -189,3 +189,4 @@ visible = false
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="KnockbackLockTimer" to="." method="_on_knockback_lock_timer_timeout"]
+[connection signal="timeout" from="BlinkingTimer" to="." method="_on_blinking_timer_timeout"]
