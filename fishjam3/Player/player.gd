@@ -9,9 +9,10 @@ signal hit
 @onready var dash_timer: Timer = $DashTimer
 @onready var knockback_lock_timer: Timer = $KnockbackLockTimer
 @onready var blinking_timer: Timer = $BlinkingTimer
+@onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
 const SPEED = 300.0
-const DASH_SPEED = 2500.0
+const DASH_SPEED = 2000.0
 const JUMP_VELOCITY = -400.0
 const KNOCKBACK_FORCE_X = 2000
 const KNOCKBACK_FORCE_Y = -200
@@ -21,6 +22,9 @@ var last_direction := 1
 var is_dashing := false
 var enemy_collision_check := false
 var is_invincible := false
+var can_dash := true
+var has_air_dashed := false
+var was_on_floor := false
 
 var max_health := Globals.player_health
 var health := max_health
@@ -46,10 +50,15 @@ func _physics_process(delta: float) -> void:
 	update_swipe_attack_position()
 
 	move_and_slide()
+	
+	# Ground check for air dash
+	if is_on_floor() and not was_on_floor:
+		has_air_dashed = false
+	was_on_floor = is_on_floor()
 
 func handle_gravity(delta: float) -> void:
 	#disable this for some shenanigans
-	#if is_dashing == false:
+	if is_dashing == false:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 
@@ -64,17 +73,25 @@ func handle_movement() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_dash() -> void:
-	if Input.is_action_just_pressed("dash") and not is_dashing:
+	if Input.is_action_just_pressed("dash") and not is_dashing and can_dash:
+		if has_air_dashed and not is_on_floor(): # Prevent second air dash
+			return
+		
 		is_dashing = true
+		can_dash = false
 		set_collision_mask_value(4, false)
 		
 		dash_timer.start()
+		dash_cooldown_timer.start()
 		animated_sprite_2d.material.blend_mode = 4
-
+		
 		var dash_dir = last_direction
 		velocity.x = dash_dir * DASH_SPEED
 		animated_sprite_2d.scale.x = dash_dir
 		animated_sprite_2d.play("dash")
+		
+		if not is_on_floor():
+			has_air_dashed = true # Set flag to true to prevent the function from running again
 
 func handle_animation() -> void:
 	if is_dashing:
@@ -163,3 +180,6 @@ func _on_blinking_timer_timeout() -> void:
 	else:
 		animated_sprite_2d.modulate.a = 1.0
 		is_invincible = false
+
+func _on_dash_cooldown_timer_timeout() -> void:
+	can_dash = true
