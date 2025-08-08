@@ -5,6 +5,7 @@ signal hit
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_label: Label = $HealthLabel
 @onready var swipe_attack: Area2D = $SwipeAttack
+@onready var input_menu: Control = $GUI/InputSettings
 @onready var dash_timer: Timer = $DashTimer
 @onready var knockback_lock_timer: Timer = $KnockbackLockTimer
 @onready var blinking_timer: Timer = $BlinkingTimer
@@ -29,8 +30,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	update_health_label()
+	remap_menu()
 
-	direction = Input.get_axis("ui_left", "ui_right")
+	direction = Input.get_axis("move_left", "move_right")
 
 	if direction != 0:
 		last_direction = direction
@@ -52,7 +54,7 @@ func handle_gravity(delta: float) -> void:
 			velocity += get_gravity() * delta
 
 func handle_jump() -> void:
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not enemy_collision_check:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not enemy_collision_check:
 		velocity.y = JUMP_VELOCITY
 
 func handle_movement() -> void:
@@ -62,7 +64,7 @@ func handle_movement() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_dash() -> void:
-	if Input.is_action_just_pressed("Dash") and not is_dashing:
+	if Input.is_action_just_pressed("dash") and not is_dashing:
 		is_dashing = true
 		set_collision_mask_value(4, false)
 		
@@ -122,13 +124,20 @@ func update_swipe_attack_position() -> void:
 func update_health_label() -> void:
 	health_label.text = str(health) + "/" + str(max_health)
 
+func remap_menu() -> void:
+	if Input.is_action_just_pressed("remap_menu"):
+		if not input_menu.visible:
+			input_menu.visible = true
+		else:
+			input_menu.visible = false
+
 func _on_hit() -> void:
 	if not enemy_collision_check:
 		health -= 1
 		update_health_label()
 
 	if health <= 0:
-		get_tree().change_scene_to_file("res://MainMenu.tscn")
+		get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
 
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
