@@ -12,7 +12,7 @@ signal hit
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
 const SPEED = 300.0
-const DASH_SPEED = 2000.0
+const DASH_SPEED = 2500.0
 const JUMP_VELOCITY = -400.0
 const KNOCKBACK_FORCE_X = 2000
 const KNOCKBACK_FORCE_Y = -200
@@ -25,6 +25,7 @@ var is_invincible := false
 var can_dash := true
 var has_air_dashed := false
 var was_on_floor := false
+
 
 var max_health := Globals.player_health
 var health := max_health
@@ -50,11 +51,12 @@ func _physics_process(delta: float) -> void:
 	update_swipe_attack_position()
 
 	move_and_slide()
-	
-	# Ground check for air dash
+
+
 	if is_on_floor() and not was_on_floor:
 		has_air_dashed = false
 	was_on_floor = is_on_floor()
+
 
 func handle_gravity(delta: float) -> void:
 	#disable this for some shenanigans
@@ -74,9 +76,9 @@ func handle_movement() -> void:
 
 func handle_dash() -> void:
 	if Input.is_action_just_pressed("dash") and not is_dashing and can_dash:
-		if has_air_dashed and not is_on_floor(): # Prevent second air dash
-			return
-		
+		if not is_on_floor() and has_air_dashed:
+			return  # Prevent second air dash
+
 		is_dashing = true
 		can_dash = false
 		set_collision_mask_value(4, false)
@@ -84,14 +86,15 @@ func handle_dash() -> void:
 		dash_timer.start()
 		dash_cooldown_timer.start()
 		animated_sprite_2d.material.blend_mode = 4
-		
+
 		var dash_dir = last_direction
 		velocity.x = dash_dir * DASH_SPEED
 		animated_sprite_2d.scale.x = dash_dir
 		animated_sprite_2d.play("dash")
-		
+
 		if not is_on_floor():
-			has_air_dashed = true # Set flag to true to prevent the function from running again
+			has_air_dashed = true
+
 
 func handle_animation() -> void:
 	if is_dashing:
