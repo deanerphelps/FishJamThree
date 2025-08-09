@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 				swipe_collision_shape.global_position.x = global_position.x - 34
 
 
-	elif distance <= 75: 
+	elif distance <= 75 and target_to_chase.is_dashing == false: 
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		swipe_collision_shape.disabled = false
 		animated_swipe.visible = true
