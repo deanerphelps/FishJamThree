@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp3eiq4hy28ty"]
+[gd_scene load_steps=18 format=3 uid="uid://dp3eiq4hy28ty"]
 
 [ext_resource type="Texture2D" uid="uid://bxv13ocdldct6" path="res://Sprites/Pagan.png" id="1_5kk61"]
 [ext_resource type="Script" uid="uid://7xp25ai0y7ff" path="res://Enemies/enemy.gd" id="1_hxhsd"]
+[ext_resource type="Texture2D" uid="uid://dhenb78gnvsj7" path="res://Sprites/attacks/swing01.png" id="3_11t2j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hxhsd"]
 animations = [{
@@ -17,6 +18,87 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gg5xg"]
 radius = 20.5
 height = 81.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m1ycr"]
+radius = 25.632
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b5us"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qntiv"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj0pm"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0crw"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjuuc"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njnah"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bjbp"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjjy2"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq8dq"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgbm3"]
+atlas = ExtResource("3_11t2j")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eql2m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b5us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qntiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj0pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0crw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjuuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njnah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bjbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjjy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq8dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgbm3")
+}],
+"loop": false,
+"name": &"Swipe_Attack",
+"speed": 20.0
+}]
 
 [node name="PaganEnemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
@@ -36,3 +118,15 @@ position = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
 shape = SubResource("CapsuleShape2D_gg5xg")
+
+[node name="SwipeCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(34, -11)
+shape = SubResource("CircleShape2D_m1ycr")
+disabled = true
+
+[node name="AnimatedSwipe" type="AnimatedSprite2D" parent="SwipeCollisionShape"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_eql2m")
+animation = &"Swipe_Attack"
+
+[connection signal="animation_finished" from="SwipeCollisionShape/AnimatedSwipe" to="." method="_on_animated_swipe_animation_finished"]
