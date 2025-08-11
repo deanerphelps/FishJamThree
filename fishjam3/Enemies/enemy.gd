@@ -14,7 +14,12 @@ func _physics_process(delta: float) -> void:
 	# Apply gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	if target_to_chase.is_dashing == true:
+		set_collision_mask_value(3, false)
+	else:
+		set_collision_mask_value(3, true)
+	
+	
 	var distance = target_to_chase.global_position.distance_to(global_position)
 
 	# Move toward player if close enough

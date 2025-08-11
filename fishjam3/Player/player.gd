@@ -12,7 +12,7 @@ signal hit
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
 const SPEED = 300.0
-const DASH_SPEED = 2500.0
+const DASH_SPEED = 1000.0
 const JUMP_VELOCITY = -400.0
 const KNOCKBACK_FORCE_X = 2000
 const KNOCKBACK_FORCE_Y = -200
