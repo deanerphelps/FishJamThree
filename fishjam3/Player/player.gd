@@ -11,11 +11,11 @@ signal hit
 @onready var blinking_timer: Timer = $BlinkingTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
-const SPEED = 300.0
-const DASH_SPEED = 1000.0
-const JUMP_VELOCITY = -400.0
-const KNOCKBACK_FORCE_X = 2000
-const KNOCKBACK_FORCE_Y = -200
+@export var SPEED = 300.0
+@export var DASH_SPEED = 1000.0
+@export var JUMP_VELOCITY = -400.0
+@export var KNOCKBACK_FORCE_X = 2000
+@export var KNOCKBACK_FORCE_Y = -200
 
 var direction := 0
 var last_direction := 1
@@ -85,9 +85,10 @@ func handle_dash() -> void:
 		
 		dash_timer.start()
 		dash_cooldown_timer.start()
-		animated_sprite_2d.material.blend_mode = 4
+		animated_sprite_2d.modulate.a = 0.3
 
 		var dash_dir = last_direction
+		#velocity.x = 0
 		velocity.x = dash_dir * DASH_SPEED
 		animated_sprite_2d.scale.x = dash_dir
 		animated_sprite_2d.play("dash")
@@ -162,7 +163,7 @@ func _on_hit() -> void:
 func _on_dash_timer_timeout() -> void:
 	is_dashing = false
 	set_collision_mask_value(4, true)
-	animated_sprite_2d.material.blend_mode = 0
+	animated_sprite_2d.modulate.a = 1.0
 
 func _on_knockback_lock_timer_timeout() -> void:
 	enemy_collision_check = false
