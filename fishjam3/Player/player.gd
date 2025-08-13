@@ -25,6 +25,7 @@ var is_invincible := false
 var can_dash := true
 var has_air_dashed := false
 var was_on_floor := false
+var jump_start := true
 
 
 var max_health := Globals.player_health
@@ -103,9 +104,9 @@ func handle_animation() -> void:
 
 	if not is_on_floor():
 		if velocity.y < 0:
-			animated_sprite_2d.play("default") # Add jumping animation here later
+			animated_sprite_2d.play("jumping") # Add jumping animation here later
 		else:
-			animated_sprite_2d.play("default") # Add falling animation here later
+			animated_sprite_2d.play("jumping") # Add falling animation here later
 	elif direction == 0:
 		animated_sprite_2d.play("default")
 	else:

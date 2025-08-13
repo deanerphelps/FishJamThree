@@ -53,6 +53,7 @@ grow_horizontal = 2
 color = Color(0.849769, 0.052887, 0.0302074, 1)
 
 [node name="Label" type="Label" parent="Ruler/ColorRect2"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 38.0
 offset_right = 29.0
@@ -71,6 +72,7 @@ grow_horizontal = 2
 color = Color(0.849769, 0.052887, 0.0302074, 1)
 
 [node name="Label" type="Label" parent="Ruler/ColorRect3"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 38.0
 offset_right = 29.0
@@ -89,6 +91,7 @@ grow_horizontal = 2
 color = Color(0.849769, 0.052887, 0.0302074, 1)
 
 [node name="Label" type="Label" parent="Ruler/ColorRect4"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 38.0
 offset_right = 29.0
@@ -107,6 +110,7 @@ grow_horizontal = 2
 color = Color(0.849769, 0.052887, 0.0302074, 1)
 
 [node name="Label" type="Label" parent="Ruler/ColorRect5"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 38.0
 offset_right = 29.0
@@ -125,6 +129,7 @@ grow_horizontal = 2
 color = Color(0.849769, 0.052887, 0.0302074, 1)
 
 [node name="Label" type="Label" parent="Ruler/ColorRect6"]
+layout_mode = 0
 offset_left = -11.0
 offset_top = 38.0
 offset_right = 29.0
