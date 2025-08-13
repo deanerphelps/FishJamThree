@@ -27,7 +27,7 @@ var is_invincible := false
 var can_dash := true
 var has_air_dashed := false
 var was_on_floor := false
-var jump_start := true
+var jump_start := false
 
 
 var max_health := Globals.player_health
@@ -106,8 +106,11 @@ func handle_animation() -> void:
 
 	if not is_on_floor():
 		if velocity.y < 0:
-			anim_tree.get("parameters/playback").travel("jump_start") # Add jumping animation here later
-			anim_tree.get("parameters/playback").travel("jumping")
+			
+			if jump_start == true:
+				anim_tree.get("parameters/playback").travel("jumping")
+			else:
+				anim_tree.get("parameters/playback").travel("jump_start") # Add jumping animation here later
 		else:
 			anim_tree.get("parameters/playback").travel("jumping") # Add falling animation here later
 	elif direction == 0:
@@ -191,3 +194,8 @@ func _on_blinking_timer_timeout() -> void:
 
 func _on_dash_cooldown_timer_timeout() -> void:
 	can_dash = true
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if "jump_start" in anim_name:
+		jump_start = true

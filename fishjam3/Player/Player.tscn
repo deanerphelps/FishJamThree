@@ -244,7 +244,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_5wa8t"]
 resource_name = "jump_start"
 length = 0.2
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -455,7 +454,7 @@ states/jumping/position = Vector2(622, 159)
 states/running/node = SubResource("AnimationNodeBlendTree_d7xyo")
 states/running/position = Vector2(394, 292)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3nb2p"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_evw08"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_roy6y"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_u5tep"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_ps8ct"), "dash", "running", SubResource("AnimationNodeStateMachineTransition_7uipr"), "running", "dash", SubResource("AnimationNodeStateMachineTransition_yifbt"), "running", "jump_start", SubResource("AnimationNodeStateMachineTransition_s0mko"), "jump_start", "running", SubResource("AnimationNodeStateMachineTransition_hqjia"), "jump_start", "idle", SubResource("AnimationNodeStateMachineTransition_x70vp"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_wo5nf"), "jump_start", "jumping", SubResource("AnimationNodeStateMachineTransition_croik"), "jumping", "idle", SubResource("AnimationNodeStateMachineTransition_bgaaw"), "idle", "jumping", SubResource("AnimationNodeStateMachineTransition_gv3fu"), "jumping", "running", SubResource("AnimationNodeStateMachineTransition_xu7fl"), "running", "jumping", SubResource("AnimationNodeStateMachineTransition_78fhc")]
-graph_offset = Vector2(-66, -47)
+graph_offset = Vector2(-48, -11)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -472,7 +471,7 @@ texture = ExtResource("2_1gtpu")
 material = SubResource("CanvasItemMaterial_8g4oa")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_jdwmw")
-animation = &""
+animation = &"jump_start"
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -538,3 +537,4 @@ parameters/running/TimeScale/scale = 1.0
 [connection signal="timeout" from="KnockbackLockTimer" to="." method="_on_knockback_lock_timer_timeout"]
 [connection signal="timeout" from="BlinkingTimer" to="." method="_on_blinking_timer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
