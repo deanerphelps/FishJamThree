@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bobjqen2l8ppo"]
+[gd_scene load_steps=68 format=3 uid="uid://bobjqen2l8ppo"]
 
 [ext_resource type="Script" uid="uid://boe02r0pgta1o" path="res://Player/player.gd" id="1_k87gr"]
 [ext_resource type="Texture2D" uid="uid://dpkqiyldt65vi" path="res://Sprites/Alexander.png" id="2_1gtpu"]
@@ -166,6 +166,297 @@ font_size = 11
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_j23h2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_p7tob"]
+resource_name = "dash"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v0k0e"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_5wa8t"]
+resource_name = "jump_start"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump_start"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_0j2ni"]
+resource_name = "jumping"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jumping"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s1rgi"]
+resource_name = "running"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"running"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dm7nj"]
+_data = {
+&"RESET": SubResource("Animation_j23h2"),
+&"dash": SubResource("Animation_p7tob"),
+&"default": SubResource("Animation_v0k0e"),
+&"jump_start": SubResource("Animation_5wa8t"),
+&"jumping": SubResource("Animation_0j2ni"),
+&"running": SubResource("Animation_s1rgi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1rgi"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j23h2"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0j2ni"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_s1rgi")
+nodes/Animation/position = Vector2(75, 182)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_j23h2")
+nodes/TimeScale/position = Vector2(280, 100)
+nodes/output/position = Vector2(520, 140)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3mea3"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_7v5gs"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8sa4y"]
+graph_offset = Vector2(-181, 87)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3mea3")
+nodes/Animation/position = Vector2(0, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_7v5gs")
+nodes/TimeScale/position = Vector2(180, 100)
+nodes/output/position = Vector2(440, 160)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v0k0e"]
+animation = &"jump_start"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5wa8t"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p7tob"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_v0k0e")
+nodes/Animation/position = Vector2(80, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5wa8t")
+nodes/TimeScale/position = Vector2(360, 180)
+nodes/output/position = Vector2(600, 160)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dm7nj"]
+animation = &"jumping"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3mea3"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7v5gs"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_dm7nj")
+nodes/Animation/position = Vector2(178, 141)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3mea3")
+nodes/TimeScale/position = Vector2(380, 180)
+nodes/output/position = Vector2(600, 160)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8sa4y"]
+animation = &"running"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3nb2p"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d7xyo"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_8sa4y")
+nodes/Animation/position = Vector2(180, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3nb2p")
+nodes/TimeScale/position = Vector2(401, 198)
+nodes/output/position = Vector2(680, 140)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3nb2p"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_evw08"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_roy6y"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u5tep"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ps8ct"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7uipr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yifbt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s0mko"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqjia"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x70vp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wo5nf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_croik"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgaaw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gv3fu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xu7fl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_78fhc"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d7xyo"]
+states/Start/position = Vector2(187, 100)
+states/dash/node = SubResource("AnimationNodeBlendTree_0j2ni")
+states/dash/position = Vector2(427, -7)
+states/idle/node = SubResource("AnimationNodeBlendTree_8sa4y")
+states/idle/position = Vector2(297, 159)
+states/jump_start/node = SubResource("AnimationNodeBlendTree_p7tob")
+states/jump_start/position = Vector2(610, 5)
+states/jumping/node = SubResource("AnimationNodeBlendTree_7v5gs")
+states/jumping/position = Vector2(622, 159)
+states/running/node = SubResource("AnimationNodeBlendTree_d7xyo")
+states/running/position = Vector2(394, 292)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3nb2p"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_evw08"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_roy6y"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_u5tep"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_ps8ct"), "dash", "running", SubResource("AnimationNodeStateMachineTransition_7uipr"), "running", "dash", SubResource("AnimationNodeStateMachineTransition_yifbt"), "running", "jump_start", SubResource("AnimationNodeStateMachineTransition_s0mko"), "jump_start", "running", SubResource("AnimationNodeStateMachineTransition_hqjia"), "jump_start", "idle", SubResource("AnimationNodeStateMachineTransition_x70vp"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_wo5nf"), "jump_start", "jumping", SubResource("AnimationNodeStateMachineTransition_croik"), "jumping", "idle", SubResource("AnimationNodeStateMachineTransition_bgaaw"), "idle", "jumping", SubResource("AnimationNodeStateMachineTransition_gv3fu"), "jumping", "running", SubResource("AnimationNodeStateMachineTransition_xu7fl"), "running", "jumping", SubResource("AnimationNodeStateMachineTransition_78fhc")]
+graph_offset = Vector2(-66, -47)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 collision_layer = 4
@@ -181,7 +472,8 @@ texture = ExtResource("2_1gtpu")
 material = SubResource("CanvasItemMaterial_8g4oa")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_jdwmw")
-animation = &"jump_start"
+animation = &""
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -2.5)
@@ -226,6 +518,20 @@ one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dm7nj")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_d7xyo")
+anim_player = NodePath("../AnimationPlayer")
+parameters/dash/TimeScale/scale = 1.0
+parameters/idle/TimeScale/scale = 1.0
+parameters/jump_start/TimeScale/scale = 1.0
+parameters/jumping/TimeScale/scale = 1.0
+parameters/running/TimeScale/scale = 1.0
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

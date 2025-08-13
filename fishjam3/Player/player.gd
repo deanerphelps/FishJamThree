@@ -10,6 +10,8 @@ signal hit
 @onready var knockback_lock_timer: Timer = $KnockbackLockTimer
 @onready var blinking_timer: Timer = $BlinkingTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
+@onready var anim_tree: AnimationTree = $AnimationTree
+
 
 @export var SPEED = 300.0
 @export var DASH_SPEED = 1000.0
@@ -92,7 +94,7 @@ func handle_dash() -> void:
 		#velocity.x = 0
 		velocity.x = dash_dir * DASH_SPEED
 		animated_sprite_2d.scale.x = dash_dir
-		animated_sprite_2d.play("dash")
+		anim_tree.get("parameters/playback").travel("dash")
 
 		if not is_on_floor():
 			has_air_dashed = true
@@ -104,14 +106,15 @@ func handle_animation() -> void:
 
 	if not is_on_floor():
 		if velocity.y < 0:
-			animated_sprite_2d.play("jumping") # Add jumping animation here later
+			anim_tree.get("parameters/playback").travel("jump_start") # Add jumping animation here later
+			anim_tree.get("parameters/playback").travel("jumping")
 		else:
-			animated_sprite_2d.play("jumping") # Add falling animation here later
+			anim_tree.get("parameters/playback").travel("jumping") # Add falling animation here later
 	elif direction == 0:
-		animated_sprite_2d.play("default")
+		anim_tree.get("parameters/playback").travel("idle")
 	else:
 		animated_sprite_2d.scale.x = last_direction
-		animated_sprite_2d.play("running") # No need for two running animations
+		anim_tree.get("parameters/playback").travel("running") # No need for two running animations
 
 func handle_collisions() -> void:
 	if enemy_collision_check:
