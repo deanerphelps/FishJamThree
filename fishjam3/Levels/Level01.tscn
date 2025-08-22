@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://duvijgjg04e4k"]
+[gd_scene load_steps=5 format=3 uid="uid://duvijgjg04e4k"]
 
 [ext_resource type="PackedScene" uid="uid://dlh0ch4jjk11g" path="res://Tilesheets/tile_map.tscn" id="1_dd4jf"]
 [ext_resource type="PackedScene" uid="uid://bobjqen2l8ppo" path="res://Player/Player.tscn" id="3_mk8wa"]
 [ext_resource type="PackedScene" uid="uid://dp3eiq4hy28ty" path="res://Enemies/PaganEnemy.tscn" id="3_v0mw7"]
+[ext_resource type="AudioStream" uid="uid://s0fl3xktpt54" path="res://music/Dusk_Level1.mp3" id="4_mk8wa"]
 
 [node name="Level01" type="Node2D"]
 
@@ -135,3 +136,9 @@ offset_top = 38.0
 offset_right = 29.0
 offset_bottom = 61.0
 text = "480"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mk8wa")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
