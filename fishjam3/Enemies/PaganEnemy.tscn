@@ -1,11 +1,27 @@
-[gd_scene load_steps=18 format=3 uid="uid://dp3eiq4hy28ty"]
+[gd_scene load_steps=20 format=3 uid="uid://dp3eiq4hy28ty"]
 
 [ext_resource type="Texture2D" uid="uid://bxv13ocdldct6" path="res://Sprites/Pagan.png" id="1_5kk61"]
 [ext_resource type="Script" uid="uid://7xp25ai0y7ff" path="res://Enemies/enemy.gd" id="1_hxhsd"]
+[ext_resource type="Texture2D" uid="uid://d02b3rg0gpkw2" path="res://Sprites/Pagan Attack Up.png" id="2_m1ycr"]
 [ext_resource type="Texture2D" uid="uid://dhenb78gnvsj7" path="res://Sprites/attacks/swing01.png" id="3_11t2j"]
+[ext_resource type="Texture2D" uid="uid://khsj5rfa1rjw" path="res://Sprites/Pagan Attack.png" id="3_eql2m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hxhsd"]
 animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_m1ycr")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_eql2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_5kk61")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 2.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_5kk61")
@@ -108,6 +124,7 @@ script = ExtResource("1_hxhsd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hxhsd")
+animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -4.5)
