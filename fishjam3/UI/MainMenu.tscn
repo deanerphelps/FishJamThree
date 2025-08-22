@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dntj0c3ot3jol" path="res://UI/main_menu.gd" id="1_8aown"]
 [ext_resource type="Texture2D" uid="uid://cnikp4h5gfnm8" path="res://bg.jpg" id="2_t6syg"]
-[ext_resource type="AudioStream" uid="uid://cvcguf0kvx7s0" path="res://music/HugeStringsidk.mp3" id="3_y6s48"]
+[ext_resource type="AudioStream" uid="uid://dleur1yo4rvjt" path="res://music/Dusk_MainMenu.mp3" id="3_8aown"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i26rj"]
 bg_color = Color(0.816154, 0.806497, 0.970086, 1)
@@ -118,8 +118,8 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_y6s48")
-volume_db = -30.0
+stream = ExtResource("3_8aown")
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
 

@@ -26,7 +26,6 @@ window/size/viewport_height=324
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [editor]
 
@@ -37,6 +36,7 @@ version_control/autoload_on_startup=true
 
 Enemy="Group for collision"
 TileMap=""
+Player=""
 
 [input]
 
