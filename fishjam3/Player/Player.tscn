@@ -158,7 +158,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tok1r"]
-radius = 18.0
+radius = 14.0
 height = 73.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_tok1r"]
@@ -471,7 +471,6 @@ texture = ExtResource("2_1gtpu")
 material = SubResource("CanvasItemMaterial_8g4oa")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_jdwmw")
-animation = &"jump_start"
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
