@@ -5,7 +5,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 @onready var swipe_collision_shape: CollisionShape2D = $SwipeCollisionShape
 @onready var animated_swipe: AnimatedSprite2D = $SwipeCollisionShape/AnimatedSwipe
-@onready var animated_attack: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
@@ -43,16 +43,15 @@ func _physics_process(delta: float) -> void:
 
 
 	elif distance <= 75 and target_to_chase.is_dashing == false and can_attack == true:
-		animated_attack.play("Attack")
+		animated_sprite.play("Attack")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if animated_attack.frame == 1:
+		if animated_sprite.frame == 1:
 			swipe_collision_shape.disabled = false
 			animated_swipe.visible = true
 			animated_swipe.play("Swipe_Attack")
 			can_attack = false
 			attack_cooldown_timer.start()
-			animated_attack.play("default")
-		
+				
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED) # Becomes zero but a bit smoother
 
@@ -66,5 +65,5 @@ func _on_animated_swipe_animation_finished() -> void:
 func _on_attack_cooldown_timer_timeout() -> void:
 	can_attack = true
 	
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animated_sprite.play("default") 
